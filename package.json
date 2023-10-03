@@ -1,0 +1,19 @@
+{
+  "name": "same-thing",
+  "version": "1.0.0",
+  "description": "create same-thing app",
+  "main": "index.js",
+  "bin": {
+    "same-thing": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "same-thing",
+    "htmx"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}
