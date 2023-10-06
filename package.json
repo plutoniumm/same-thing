@@ -2,12 +2,13 @@
   "name": "same-thing",
   "version": "1.0.0",
   "description": "create same-thing app",
+  "type": "module",
   "main": "index.js",
   "bin": {
     "same-thing": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c && chmod +x index.js"
   },
   "keywords": [
     "same-thing",
@@ -15,5 +16,12 @@
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "@clack/core": "^0.3.3",
+    "@clack/prompts": "^0.7.0",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^20.8.2",
+    "rollup": "^4.0.0",
+    "tslib": "^2.6.2"
+  }
 }
