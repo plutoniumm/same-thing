@@ -1,4 +1,6 @@
 import typescript from '@rollup/plugin-typescript';
+import resolve from 'rollup-plugin-node-resolve';
+import esbuild from 'rollup-plugin-esbuild';
 
 export default {
   input: 'src/index.ts',
@@ -6,5 +8,8 @@ export default {
     file: 'index.js',
     format: 'esm',
   },
-  plugins: [ typescript() ],
+  plugins: [
+    resolve(),
+    typescript(), esbuild()
+  ],
 };
