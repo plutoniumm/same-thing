@@ -9,3 +9,10 @@ Create (same-thing) apps with no build configuration.
 Create (same-thing) App works on macOS, Windows<br>
 [htmx / destroy-react-app (same thing)](https://htmx.org/) itself however, runs basically anywhere you can run Doom. All you need is a CPU, some form of memory and networking <br/>
 If something doesn’t work, please [file an issue](https://github.com/plutoniumm/same-thing/issues/new).
+
+## Supported Backends
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| Typescript | JSX | Bun + Hono |
+| Go | Templates | go-humble/templ|
+> more planned
