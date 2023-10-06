@@ -2,7 +2,8 @@
 logs
 *.log
 npm-debug.log*
-templates/*
+templates2/
+templates/
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
