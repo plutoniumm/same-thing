@@ -5,10 +5,10 @@
   "type": "module",
   "main": "index.js",
   "bin": {
-    "same-thing": "./index.js"
+    "same-thing": "./dist/index.js"
   },
   "scripts": {
-    "build": "rollup -c && chmod +x index.js"
+    "build": "tsc"
   },
   "keywords": [
     "same-thing",

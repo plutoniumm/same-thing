@@ -1,8 +1,9 @@
 import typescript from '@rollup/plugin-typescript';
 import resolve from 'rollup-plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
+import { defineConfig } from "rollup";
 
-export default {
+export default defineConfig( {
   input: 'src/index.ts',
   output: {
     file: 'index.js',
@@ -12,4 +13,4 @@ export default {
     resolve(),
     typescript(), esbuild()
   ],
-};
+} );
