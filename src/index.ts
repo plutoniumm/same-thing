@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import degit from "degit";
-import { isWin } from "./utils.js";
+import { options, depCheck } from "./deps.js";
+import type { TNames } from "./deps.js";
+import { isWin, isGit, checkBin } from "./utils.js";
 import { c, sh, dir } from "./node.js";
 import { intro, outro, select } from '@clack/prompts';
 
@@ -8,7 +10,6 @@ if (isWin()) {
   c.alert("Niche OSes made for gaming may have issues with this tool.")
   process.exit(1);
 };
-
 intro("Welcome to htmx / skill-issue (same-thing)");
 
 // check if directory is empty
@@ -26,28 +27,37 @@ if (files.filter(f => !f.startsWith(".")).length > 0) {
     c.log("Exiting...");
     process.exit(1);
   }
-}
-
-const options = [
-  { value: 'ts-bun', label: 'Typescript (Bun+Hono)' },
-  { value: 'go-templ', label: 'Go (Templ)' },
-];
+};
 
 const pType = await select({
   message: 'Pick a project type.',
   options,
-});
+}) as TNames;
+c.info(`Initialising ${pType} project...`);
 
-c.info(`Initialising ${options.find(o => o.value === pType).label
-  } project...`);
-
-const emitter = degit('plutoniumm/htmx-templates/' + pType, {
+const emitter = degit(`plutoniumm/htmx-templates/${pType}`, {
   force: true,
+  cache: false,
+  verbose: false,
 });
 
 emitter.on('info', i => c.info(i.message));
 emitter.clone(process.cwd()).then(() => {
-  c.info("Cloned!");
+  const deps = depCheck[pType];
+  for (const dep of deps) {
+    const has = checkBin(dep);
+    if (!has) {
+      c.warn(`${dep} binary not found. It's recommended to install it`);
+    };
+  };
+
+  if (!isGit(files)) {
+    sh("git init -q");
+    c.success(`Initialised git repo with ${pType}`);
+  } else {
+    c.success(`Initialised ${pType}`);
+  };
+  outro(`You're all set!`);
 }).catch((err) => {
   c.alert(err);
   process.exit(1);

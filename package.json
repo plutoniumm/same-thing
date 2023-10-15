@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "tsc && cd test && npx .."
+    "test": "rm -rf test/* test/.git && tsc && cd test && npx .."
   },
   "keywords": [
     "same-thing",
