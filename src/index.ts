@@ -1,14 +1,15 @@
 #!/usr/bin/env node
-import sys from "./sys.js";
-import { c, sh, dir } from "./utils.js";
+import degit from "degit";
+import { isWin } from "./utils.js";
+import { c, sh, dir } from "./node.js";
 import { intro, outro, select } from '@clack/prompts';
 
-if (sys.isWin) {
+if (isWin()) {
   c.alert("Niche OSes made for gaming may have issues with this tool.")
-  //   process.exit(1);
+  process.exit(1);
 };
 
-intro("Welcome to htmx / destroy-react-app (same-thing)");
+intro("Welcome to htmx / skill-issue (same-thing)");
 
 // check if directory is empty
 const files = dir(process.cwd());
@@ -27,10 +28,27 @@ if (files.filter(f => !f.startsWith(".")).length > 0) {
   }
 }
 
-const projectType = await select({
+const options = [
+  { value: 'ts-bun', label: 'Typescript (Bun+Hono)' },
+  { value: 'go-templ', label: 'Go (Templ)' },
+];
+
+const pType = await select({
   message: 'Pick a project type.',
-  options: [
-    { value: 'tsx', label: 'Typescript (Bun+Hono)' },
-    { value: 'go', label: 'Go (Templ)' },
-  ],
+  options,
+});
+
+c.info(`Initialising ${options.find(o => o.value === pType).label
+  } project...`);
+
+const emitter = degit('plutoniumm/htmx-templates/' + pType, {
+  force: true,
+});
+
+emitter.on('info', i => c.info(i.message));
+emitter.clone(process.cwd()).then(() => {
+  c.info("Cloned!");
+}).catch((err) => {
+  c.alert(err);
+  process.exit(1);
 });

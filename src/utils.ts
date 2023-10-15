@@ -1,6 +1,10 @@
 import { execSync } from "child_process";
 import { } from "./node.js";
 
+export function isWin () {
+  return process.platform === 'win32'
+};
+
 const checkBin = (binary: string): boolean => {
   let ret = false;
   try {

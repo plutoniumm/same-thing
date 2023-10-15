@@ -8,7 +8,8 @@
     "same-thing": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "tsc && cd test && npx .."
   },
   "keywords": [
     "same-thing",
@@ -21,6 +22,7 @@
     "@clack/prompts": "^0.7.0",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/node": "^20.8.2",
+    "degit": "^2.8.4",
     "rollup": "^4.0.0",
     "rollup-plugin-esbuild": "^6.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
