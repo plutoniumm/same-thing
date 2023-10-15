@@ -1,5 +1,5 @@
 # Create (same-thing) App
-<img alt="Logo" align="right" src="./client/assets/logo.svg" width="20%" />
+<img alt="Logo" align="right" src="https://raw.githubusercontent.com/plutoniumm/htmx-templates/main/assets/logo.svg" width="20%" />
 
 Create (same-thing) apps with no build configuration.
 
