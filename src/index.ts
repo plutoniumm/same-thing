@@ -53,6 +53,8 @@ declare global {
   var fetch: any;
 }
 
+const config = options.find(o => o.value === pType);
+
 emitter.on('info', i => c.info(i.message));
 emitter.clone(process.cwd()).then(async () => {
   const deps = depCheck[pType];
@@ -84,7 +86,7 @@ emitter.clone(process.cwd()).then(async () => {
   };
   asseter.clone(process.cwd() + "/assets").then(async () => {
     c.success(`Initialised assets`);
-    outro(`You're all set!`);
+    outro(config.outro);
 
     process.exit(0);
   });
